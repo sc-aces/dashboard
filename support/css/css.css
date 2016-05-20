@@ -1,0 +1,216 @@
+.fa{overflow:hidden !important;}
+
+.btn{margin-top:5px;}
+.bold{font-weight: bold}
+.italic{font-style: italic;}
+.clear{clear:both;}
+.more, .more-parent{cursor:pointer;}
+div[id^='more-']{
+	display:none;
+}
+.width0{width: 0% !important}
+.indent{margin-left:2.5%;}
+
+.sidebar{background-color: #101010;}
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand{color:#00061f;}
+.navbar-inverse{background-color:#dcbc00;}
+.sidebar h2{
+	margin-top:0;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	color: #9d9d9d;
+	border-bottom: 1px solid #eee;
+}
+.sidebar .footer{
+	position:absolute;
+	bottom: 0px;
+	width:100%;
+	margin-left:-20px;
+}
+.footer .clock {
+	margin: 0 auto;
+	width: 500px;
+}
+.clock{zoom:.35;-moz-transform: scale(.35);clear: both}
+.copyright{
+	font-variant: small-caps;
+	font-size: 80%;
+	text-align: center;
+	font-style: italic;
+}
+.copyright i{vertical-align: middle;}
+
+.displayNone{display: none}
+
+.custom-hr{
+	border: 0;
+	height: 1px;
+	margin:3px 0;
+	background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25));
+}
+.custom-hr.increase-margins{margin:15px 0;}
+.custom-hr.fade-left{background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25));}
+.custom-hr.fade-center{background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));}
+.custom-hr.fade-right{background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));}
+
+.reset-input{cursor:pointer;}
+.reset-input:hover, .reset-input-active{background: #525252;color: #F9F9F9;}
+
+.section-container{
+	margin-bottom: 8px;
+	box-shadow: 0 0 15px rgba(0,0,0,.25);
+	width:100%;
+	float:left;
+}
+.section-header{float:left; width:100%; padding:5px 10px;}
+.section-body{padding:15px;}
+.section-body h3{margin-top:0px;}
+.section-header h3, .section-header h4{margin:0; font-weight: bold;}
+.section-header h5{margin:5px 0 0 0;}
+
+
+.inline-form-column{min-width:600px;}
+#create-election .input-group,
+#create-election textarea,
+#add-ship .input-group,
+.edit-ship .input-group,
+#login .input-group{max-width:350px;}
+
+.election-deleted{opacity: .2;}
+.election-deleted:hover{opacity: .7;}
+.election-status h4{margin-bottom: 0px;}
+.election-status div:nth-child(2){text-align:right;}
+
+
+.election-notes{
+	width: 95%;
+	margin-left: 2.5%;
+	margin-bottom: 25px;
+}
+
+.election-result{
+	margin:0 2.25%;
+	width:20%;
+	background-color:#373737;
+	background-color:rgba(0,0,0,.2);
+	display:inline-block;
+}
+
+.election-result .radio{padding:5px 10px;}
+.election-result .radio label{width:100%; padding: 5px 20px;}
+.election-result .radio:hover{background:green; padding:5px 10px;}
+.election-result h5 {
+	font-weight:bold;
+	background: #428bca;
+	padding: 10px;
+	margin: 0;
+	color: white;
+}
+
+.candidate{padding:0 10px;}
+.candidate:hover{background:#5f5f5f;}
+.candidate h6{font-weight:bold;}
+
+/*****************Alerts*/
+.alert-close{float: right; cursor: pointer;}
+
+
+/**********************Buttons*/
+
+.election-controls .btn{
+	min-width:220px;
+}
+.fa{vertical-align: middle;}
+
+
+
+
+/************************Dynamic Fleet*/
+
+	
+.ship{max-width:350px; margin:10px 9px;}
+.ships-container{margin:0 auto; float:left;}
+.ship h3{margin:0;}
+.ship img{width: 100%;}
+.ship-info-header{padding:15px 15px 0 15px;}
+.ship-info-header h3{font-variant: small-caps}
+.ship-info-body{padding:0 15px 15px 15px; height:315px; position:relative;}
+.ship-info-body button{width:100%;}
+.button-container{
+	position: absolute;
+	width: 90%;
+	bottom: 15px;
+	left:5%;
+}
+.manufacturer-logo{width:initial !important;}
+#manufacturer-logo-container{margin-top: -45px; padding-left: 5px;}
+
+
+/**********************User Settings*/
+#user-settings-form input,
+#user-settings-form select{
+	max-width:300px;
+}
+
+/***********************Login*/
+#display-password{cursor:pointer;}
+
+
+/************************Clock*/
+.text-clock{
+	border-radius: 3px;
+	padding: 5px 7px;
+}
+.days, .hours, .minutes, .seconds{font-weight: bold;}
+
+
+/*******************Colorbox*/
+#colorbox div[id$="-edit"], 
+#colorbox div[id$="-delete"],
+#colorbox div[id$="_edit"], 
+#colorbox div[id$="_delete"],
+#colorbox div[id$="_start"],
+#colorbox div[id$="_stop"],
+#colorbox div[id$="_pause"],
+#colorbox div[id$="_restart"],
+#colorbox div[id$="_restore"]{
+	color:black; 
+	overflow-x: hidden;
+	padding:15px;
+}
+#cboxOverlay {
+	background: rgba(0, 0, 0, 0.65) !important;
+}
+.modify-disclaimer{
+	max-width: 600px;
+	font-size: 90%;
+	font-style: italic;
+	text-align: center;
+	margin: 0 auto;
+}
+
+
+/**************Mobile*/
+@media (max-width: 1050px) {
+	.election-result{
+		width:100%;
+		margin:0 auto 20px 0;
+	}
+}
+@media (max-width:768px){
+	.footer-container{height: 65px}
+	body *{overflow-x: hidden}
+	.election-status div:nth-child(2){
+		text-align:left;
+		float:left !important;
+		clear:both;
+	}
+	.ship{width:100%; max-width:350px; margin:10px auto;}
+	.inline-form-column{min-width:inherit;}
+	.inline-form-column button{width:100%;}
+	#create-election .input-group,
+	#add-ship .input-group,
+	.edit-ship .input-group,
+	#login .input-group{max-width: inherit}
+	.election-controls .btn{width: 100%}
+}

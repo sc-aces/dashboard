@@ -1,0 +1,51 @@
+body, .main{background:#212121; color:white;}
+.row{background-color:#212121;}
+
+/*.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand{color:#dcbc00;}*/
+/*.navbar-inverse{background-color:#08080D;}*/
+
+.ship-info-body .row{background:initial;}
+.ship{background: rgba(255,255,255,0.15);}
+.section-header{background:#0a0a0a;}
+.section-body{background:#42424;}
+
+.text-clock{color:#fff; background:#404040;}
+
+
+.info-color{color:#31b0d5;}
+.active-color{color:#f5f5f5}
+.success-color{color:#449d44;}
+.warning-color{color:#ec971f;}
+.danger-color{color:#c9302c;}
+
+.info-background{background-color:#31b0d5;}
+.active-background{background-color:#f5f5f5}
+.success-background{background-color:#449d44;}
+.warning-background{background-color:#ec971f;}
+.danger-background{background-color:#c9302c;}
+.done-background{background-color:#676767; color:#fff;}
+
+.executive-council-color{color:#C55E13;}
+.capitalist-council-color{color:#CC8E00;}
+.explorer-council-color{color:#004061;}
+.solider-council-color{color:#902520;}
+#executive-council.election-result h5,
+#executive-council.election-result .progress-bar,
+.executive-council-background{
+    background:#C55E13;
+}
+#capitalist-council.election-result h5,
+#capitalist-council.election-result .progress-bar,
+.capitalist-council-background{
+    background:#CC8E00;
+}
+#explorer-council.election-result h5,
+#explorer-council.election-result .progress-bar,
+.explorer-council-background{
+    background:#004061;
+}
+#solider-council.election-result h5,
+#solider-council.election-result .progress-bar,
+.solider-council-background{
+    background:#902520;
+}

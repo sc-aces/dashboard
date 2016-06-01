@@ -1,7 +1,7 @@
 <?php
 	$supportPrefix = "../../../support/";
-    $dashboardSupportPrefix = $prefix."../support/";
-    $dashboardRoot = "../";
+	$dashboardSupportPrefix = $prefix."../support/";
+	$dashboardRoot = "../";
 	include $dashboardSupportPrefix.'siteheader.php';
 ?>
 

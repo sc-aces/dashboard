@@ -10,6 +10,7 @@
 		<!--<script src="<?php echo $supportPrefix;?>lightbox/dist/js/lightbox.min.js"></script>-->
 		<script src="<?php echo $supportPrefix;?>colorbox/jquery.colorbox-min.js"></script>
 		<script src="<?php echo $supportPrefix;?>flipclock/compiled/flipclock.min.js"></script>
+		<script src="<?php echo $supportPrefix;?>bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 		<script src="<?php echo $dashboardSupportPrefix;?>js/main.js"></script>
 		<?php if(file_exists("local.js")) echo "<script src=\"local.js\"></script>";?>
 		<?php if($customJs) echo $customJs; ?>

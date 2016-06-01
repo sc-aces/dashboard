@@ -7,7 +7,6 @@ body, .main{background:#212121; color:white;}
 .ship-info-body .row{background:initial;}
 .ship{background: rgba(255,255,255,0.15);}
 .section-header{background:#0a0a0a;}
-.section-body{background:#42424;}
 
 .text-clock{color:#fff; background:#404040;}
 
@@ -49,3 +48,5 @@ body, .main{background:#212121; color:white;}
 .solider-council-background{
     background:#902520;
 }
+
+.datepicker{color:#333;}

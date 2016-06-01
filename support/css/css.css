@@ -1,10 +1,11 @@
+.pagination>li>a, .pagination>li>span{cursor: pointer;}
 .fa{overflow:hidden !important;}
 
 .btn{margin-top:5px;}
 .bold{font-weight: bold}
 .italic{font-style: italic;}
 .clear{clear:both;}
-.more, .more-parent{cursor:pointer;}
+.more-static, .more-static-parent, .more-dynamic, .more-dynamic-parent{cursor:pointer;}
 div[id^='more-']{
 	display:none;
 }
@@ -12,6 +13,7 @@ div[id^='more-']{
 .indent{margin-left:2.5%;}
 
 .sidebar{background-color: #101010;}
+.nav-sidebar li a:hover{border-right: 3px solid;}
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand{color:#00061f;}
 .navbar-inverse{background-color:#dcbc00;}
 .sidebar h2{
@@ -70,11 +72,13 @@ div[id^='more-']{
 
 
 .inline-form-column{min-width:600px;}
-#create-election .input-group,
-#create-election textarea,
-#add-ship .input-group,
 .edit-ship .input-group,
-#login .input-group{max-width:350px;}
+#colorbox div[id$="_edit"] .input-group,
+#login .input-group,
+.form-container .input-group,
+.form-container textarea{max-width:350px;}
+
+input[type=file]{margin-top:7px;}
 
 .election-deleted{opacity: .2;}
 .election-deleted:hover{opacity: .7;}
@@ -127,7 +131,7 @@ div[id^='more-']{
 
 /************************Dynamic Fleet*/
 
-	
+#ship-pagination{margin: 0 !important;}
 .ship{max-width:350px; margin:10px 9px;}
 .ships-container{margin:0 auto; float:left;}
 .ship h3{margin:0;}
@@ -159,10 +163,24 @@ div[id^='more-']{
 /************************Clock*/
 .text-clock{
 	border-radius: 3px;
-	padding: 5px 7px;
+	padding: 3px 7px;
+	margin-top:3px;
 }
 .days, .hours, .minutes, .seconds{font-weight: bold;}
 
+
+/***********************Tags*/
+.tag{
+	padding: 5px;
+	background: #EEE;
+	color: black;
+	width: initial;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	margin: 5px;
+}
+.tag-remove{cursor:pointer;}
+.no-remove{cursor:not-allowed;}
 
 /*******************Colorbox*/
 #colorbox div[id$="-edit"], 
@@ -200,6 +218,7 @@ div[id^='more-']{
 @media (max-width:768px){
 	.footer-container{height: 65px}
 	body *{overflow-x: hidden}
+	ul li, ol li{overflow-x: initial;}
 	.election-status div:nth-child(2){
 		text-align:left;
 		float:left !important;
@@ -211,6 +230,7 @@ div[id^='more-']{
 	#create-election .input-group,
 	#add-ship .input-group,
 	.edit-ship .input-group,
-	#login .input-group{max-width: inherit}
+	#login .input-group,
+	#add-manufac-icon .input-group{max-width: inherit}
 	.election-controls .btn{width: 100%}
 }

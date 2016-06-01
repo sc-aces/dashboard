@@ -54,7 +54,8 @@ body {
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
+.nav-sidebar > .active > a:focus, 
+.pagination > li > .active > a {
   color: #00061f;
   background-color: #dcbc00;
 }

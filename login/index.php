@@ -7,6 +7,9 @@
 	$dashboardRoot = "../";
 	include $dashboardSupportPrefix.'siteheader.php';
 	
+	$currentUser = "";
+	$currentPass = "";
+	
 	if($_SESSION['loggedIn'] && $_GET['logout'] && count($_POST) == 0){
 		//perform logout and return to homepage
 		$_SESSION = array();
@@ -19,17 +22,25 @@
 		header('Location: ../user/');
 	
 	if(count($_POST)>0){
+		$currentUser = $_POST['user'];
+		$currentPass = $_POST['password'];
 		$_POST['user'] = strtolower($_POST['user']);
 		if (strpos($_POST['user'], '@') !== false)
-			$query = "SELECT password FROM users WHERE email='".$_POST['user']."'";
+			$query = "SELECT * FROM users WHERE email='".$_POST['user']."'";
 		else
-			$query = "SELECT password FROM users WHERE username='".$_POST['user']."'";
+			$query = "SELECT * FROM users WHERE username='".$_POST['user']."'";
 			
 		$passwordHash = $conn->query($query);
 		if (mysqli_num_rows($passwordHash) > 0) {
 			while($row = mysqli_fetch_assoc($passwordHash)) {
 				if(password_verify($_POST['password'],$row['password'])){
+					var_dump($row);
 					$_SESSION['loggedIn'] = true;
+					$_SESSION['userId'] = $row['id'];
+					$_SESSION['username'] = $row['username'];
+					$_SESSION['tags'] = explode(',',$row['tags']);
+					// var_dump($row);
+					setcookie("theme", $row['theme'], strtotime('+30 days'),'/dashboard/');
 					if(isset($_GET['returnUrl']) && $_SESSION['loggedIn'])
 						header('Location: ../'.$_GET['returnUrl']);
 					else if(isset($_SESSION['loggedIn']))
@@ -47,11 +58,11 @@
 					// 	}
 					// }
 				}else{
-					$alert .= createAlert("danger","Incorrect username or password. Complex password? Try clicking the lock next to the password field to see your password.");
+					$alert .= createAlert("danger","<strong>Incorrect username or password.</strong> Complex password? Try clicking the lock next to the password field to see your password.");
 				}
 			}
 		}else{
-			$alert .= createAlert("danger","Unknown username.");
+			$alert .= createAlert("danger","<strong>Unknown username.</strong>");
 		}
 	}
 ?>
@@ -75,7 +86,7 @@
 									<div class="col-sm-offset-2 col-sm-10">
 										<div class="input-group">
 											<div class="input-group-addon"><i class="fa fa-user"></i></div>
-											<input type="text" class="form-control" id="user" placeholder="Username or Email" name="user" autofocus required>
+											<input type="text" class="form-control" id="user" placeholder="Username or Email" name="user" value="<?php echo $currentUser ?>" autofocus required>
 										</div>
 									</div>
 								</div>
@@ -83,7 +94,7 @@
 									<div class="col-sm-offset-2 col-sm-10">
 										<div class="input-group">
 											<div id="display-password" class="input-group-addon"><i class="fa fa-lock"></i></div>
-											<input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+											<input type="password" class="form-control" id="password" placeholder="Password" name="password" value="<?php echo $currentPass ?>" required>
 										</div>
 									</div>
 								</div>

@@ -24,12 +24,13 @@
 		<link href="<?php echo $supportPrefix;?>flipclock/compiled/flipclock.css" rel="stylesheet">
 		<link href="<?php echo $supportPrefix;?>lightbox/dist/css/lightbox.min.css" rel="stylesheet">
 		<link href="<?php echo $supportPrefix;?>colorbox/colorbox.css" rel="stylesheet"></link>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
 		<link href="<?php echo $dashboardSupportPrefix;?>css/dashboard.css" rel="stylesheet">
 		<link href="<?php echo $dashboardSupportPrefix;?>css/css.css" rel="stylesheet">
 		<link href="<?php echo $dashboardSupportPrefix;?>css/themes/<?php echo $theme;?>.css" rel="stylesheet">
+		<link href="<?php echo $supportPrefix;?>bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet"></link>
 		<?php if($customCss) echo $customCss; ?>
 	</head>
 

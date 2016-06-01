@@ -1,4 +1,7 @@
-/*global $*/
+/*
+	global $
+	global resetOnClick
+*/
 
 $(document).ready(function(){
     //toggle display-hide password
@@ -8,4 +11,5 @@ $(document).ready(function(){
 		else
 			$('#password').attr('type','password');
 	});
+	resetOnClick();
 })

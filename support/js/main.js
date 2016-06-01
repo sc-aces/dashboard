@@ -4,12 +4,26 @@
 /* Keeps track of what was the last element that was selected for displaying
  * the admin sections on button click
  */ var lastDisplayedAdminElement = false;
+ 
+/* Number of items displayed on load of pages via AJAX
+ */ var itemsPerPage = 12;
 	
-
+	var months = new Array();
+	months[0] = "Jan";
+	months[1] = "Feb";
+	months[2] = "Mar";
+	months[3] = "Apr";
+	months[4] = "May";
+	months[5] = "Jun";
+	months[6] = "Jul";
+	months[7] = "Aug";
+	months[8] = "Sep";
+	months[9] = "Ocr";
+	months[10]= "Nov";
+	months[11]= "Dec";
 
 //****** END Globals ******//
-
-function resetOnClick(){
+$(document).ready(function(event){
 	//remove alerts
 	$('.alert-close').click(function(event) {
 		$(this).parent().slideUp("slow",function(){
@@ -17,127 +31,47 @@ function resetOnClick(){
 		});
 	});
 	
-	
-	$('.btn').click(function(event){
-		var id = $(this).attr('id');
-		if(id == "createElection-button" || id == "editElection-button"
-			|| id == "restartElection-button" || id == "deleteElection-button"
-			|| id == "startElection-button" || id == "pauseElection-button"
-			|| id == "stopElection-button"){
-				id = id.split('-');
-				id = id[0];
-				
-				if(lastDisplayedAdminElement){
-					$('#'+lastDisplayedAdminElement).slideUp('slow',function(){});
-				}
-				
-				if(id ==  lastDisplayedAdminElement){
-					$('#'+id).slideUp('slow',function(){});
-					lastDisplayedAdminElement = false;
-				}
-				else{
-					$('#'+id).slideDown('slow',function(){});
-					lastDisplayedAdminElement = id;
-				}
-			}
-	});
-	
-	$('.more-parent').click(function(event){
+	$('.more-static-parent').click(function(event){
 		$('#more-'+$(this).parent().attr('id')).slideToggle( "slow", function() {});
-		var parentId = $(this).parent().attr('id').split('-');
-		log(parentId);
-		if(parentId[0] == "election"){
-			log($(this).parent().attr('id'));
-			$('.progress-bar').animate({width:$('.process-bar').attr('aria-valuenow')},1000);
-			// $(".progress-bar").hide().show("slide", { direction: "left" }, 1500);
-			// $('.progress-bar').css('width',$('.progress-bar').attr('aria-valuenow')+'%');
-		}
 	});
-	$('.more').click(function(event){
-		$('#more-'+$(this).attr('id')).slideToggle("slow", function() {});
+	$('.more-static').click(function(event){
+		$('#more-static-'+$(this).attr('id')).slideToggle("slow", function() {});
 	});
-	
-	
-	// $('.election-form').change(function(event){
-	// 	var inputId = $(this).find('input:checked').val();
-	// 	$('#'+inputId).parent().parent().addClass('selected-canidate');
+});
+
+function resetOnClick(){
+	// $('.btn').click(function(event){
+	// 	var id = $(this).attr('id');
+	// 	if(id == "createElection-button" || id == "editElection-button"
+	// 		|| id == "restartElection-button" || id == "deleteElection-button"
+	// 		|| id == "startElection-button" || id == "pauseElection-button"
+	// 		|| id == "stopElection-button"){
+	// 			id = id.split('-');
+	// 			id = id[0];
+				
+	// 			if(lastDisplayedAdminElement){
+	// 				$('#'+lastDisplayedAdminElement).slideUp('slow',function(){});
+	// 			}
+				
+	// 			if(id ==  lastDisplayedAdminElement){
+	// 				$('#'+id).slideUp('slow',function(){});
+	// 				lastDisplayedAdminElement = false;
+	// 			}
+	// 			else{
+	// 				$('#'+id).slideDown('slow',function(){});
+	// 				lastDisplayedAdminElement = id;
+	// 			}
+	// 		}
 	// });
-	
-	
-	///////Reset Input
-	$('.reset-input').click(function(event) {
-		 $(this).siblings().val($(this).siblings().attr("default"));
-		 $(this).removeClass('reset-input-active');
+	$('.more-dynamic-parent').click(function(event){
+		$('#more-dynamic-'+$(this).parent().attr('id')).slideToggle( "slow", function() {});
 	});
-	$('.reset-input').siblings().keyup(function(event){
-		$(this).siblings().addClass('reset-input-active');
+	$('.more-dynamic').click(function(event){
+		$('#more-dynamic-'+$(this).attr('id')).slideToggle("slow", function() {});
 	});
 }
 
 $(document).ready(function(){
-	//remove alerts
-	$('.alert-close').click(function(event) {
-		$(this).parent().slideUp("slow",function(){
-			$(this).parent().remove();
-		});
-	});
-	
-	
-	$('.btn').click(function(event){
-		var id = $(this).attr('id');
-		if(id == "createElection-button" || id == "editElection-button"
-			|| id == "restartElection-button" || id == "deleteElection-button"
-			|| id == "startElection-button" || id == "pauseElection-button"
-			|| id == "stopElection-button"){
-				id = id.split('-');
-				id = id[0];
-				
-				if(lastDisplayedAdminElement){
-					$('#'+lastDisplayedAdminElement).slideUp('slow',function(){});
-				}
-				
-				if(id ==  lastDisplayedAdminElement){
-					$('#'+id).slideUp('slow',function(){});
-					lastDisplayedAdminElement = false;
-				}
-				else{
-					$('#'+id).slideDown('slow',function(){});
-					lastDisplayedAdminElement = id;
-				}
-			}
-	});
-	
-	$('.more-parent').click(function(event){
-		$('#more-'+$(this).parent().attr('id')).slideToggle( "slow", function() {});
-		var parentId = $(this).parent().attr('id').split('-');
-		log(parentId);
-		if(parentId[0] == "election"){
-			log($(this).parent().attr('id'));
-			$('.progress-bar').animate({width:$('.process-bar').attr('aria-valuenow')},1000);
-			// $(".progress-bar").hide().show("slide", { direction: "left" }, 1500);
-			// $('.progress-bar').css('width',$('.progress-bar').attr('aria-valuenow')+'%');
-		}
-	});
-	$('.more').click(function(event){
-		$('#more-'+$(this).attr('id')).slideToggle("slow", function() {});
-	});
-	
-	
-	// $('.election-form').change(function(event){
-	// 	var inputId = $(this).find('input:checked').val();
-	// 	$('#'+inputId).parent().parent().addClass('selected-canidate');
-	// });
-	
-	
-	///////Reset Input
-	$('.reset-input').click(function(event) {
-		 $(this).siblings().val($(this).siblings().attr("default"));
-		 $(this).removeClass('reset-input-active');
-	});
-	$('.reset-input').siblings().keyup(function(event){
-		$(this).siblings().addClass('reset-input-active');
-	});
-
 	function z(n){return (n < 10? '0' : '') + n;}
 	var date = new Date();
 	date = new Date(date.getUTCFullYear() + '-' + z(date.getUTCMonth() + 1) + '-' + 
@@ -148,9 +82,7 @@ $(document).ready(function(){
 					clockFace: 'TwentyFourHourClock'
 				});
 	date = new Date();
-	log(date);
 	date = date.toUTCString();
-	log(date);
 	var clock2 = $('.clock2').FlipClock(date,{  
 					clockFace: 'TwentyFourHourClock'
 				});

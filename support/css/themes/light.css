@@ -32,20 +32,23 @@ body, .main{background:#fff;}
 #executive-council.election-result h5,
 #executive-council.election-result .progress-bar,
 .executive-council-background{
-    background:#C55E13;
+	background:#C55E13;
 }
 #capitalist-council.election-result h5,
 #capitalist-council.election-result .progress-bar,
 .capitalist-council-background{
-    background:#CC8E00;
+	background:#CC8E00;
 }
 #explorer-council.election-result h5,
 #explorer-council.election-result .progress-bar,
 .explorer-council-background{
-    background:#004061;
+	background:#004061;
 }
 #solider-council.election-result h5,
 #solider-council.election-result .progress-bar,
 .solider-council-background{
-    background:#902520;
+	background:#902520;
 }
+
+.sidebar{background-color:#f5f5f5;}
+.sidebar h2 {color: #565656; border-bottom: 1px solid #565656;}

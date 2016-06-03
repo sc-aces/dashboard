@@ -1,4 +1,5 @@
 <?php
+	$allowedTags = array("3");
 	$prefix = "../";
 	$pageName = "Election Central";
 	$customHeaderIcon = "<i class=\"fa fa-archive\"></i>";

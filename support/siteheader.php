@@ -49,14 +49,18 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="<?php echo $dashboardRoot.$prefix;?>admin/">Admin</a></li>
+			<?php if($showAdmin): ?>
+			<li><a href="<?php echo $dashboardRoot.$prefix;?>admin/">Admin</a></li>
+			<?php endif; ?>
 						<!--li><s><a href="">Settings</a></s></li-->
-						<li><a href="<?php echo $dashboardRoot.$prefix;?>user/">Profile</a></li>
-					<?php if(!isset($_SESSION['loggedIn'])): ?>
-						<li><a href="<?php echo $dashboardRoot.$prefix;?>login/">Login</a></li>
-					<?php else: ?>
-						<li><a href="<?php echo $dashboardRoot.$prefix;?>login/?logout=true">Logout</a></li>
-					<?php endif; ?>
+			<?php if($showUser): ?>
+			<li><a href="<?php echo $dashboardRoot.$prefix;?>user/">Profile</a></li>
+			<?php endif; ?>
+			<?php if(!$_SESSION['loggedIn'] && $pageName != "Login" && $pageName != "Create Account"): ?>
+			<li><a href="<?php echo $dashboardRoot.$prefix;?>login/">Login</a></li>
+			<?php elseif($pageName != "Login" && $pageName != "Create Account"): ?>
+			<li><a href="<?php echo $dashboardRoot.$prefix;?>login/?logout=true">Logout</a></li>
+			<?php endif; ?>
 							
 					</ul>
 				</div>

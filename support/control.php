@@ -1,7 +1,7 @@
 <?php
 	date_default_timezone_set('UTC');
 	session_start();
-	$debug = false;
+	$debug = true;
 	$currentTime = date("Y/m/d H:i:s");
 	$currentDate = date("Y/m/d");
 	if(!$debug)
@@ -12,15 +12,29 @@
 	$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 	
 	$serverTime = date('Y-m-d H:m:s a',time());
-	
 	$defaultTheme = 'light';
+	$globalAllowedTags = array(0,1);
+	if(count($allowedTags) > 0)
+		$allowedTags = $allowedTags + $globalAllowedTags;
+	else
+		$allowedTags = $globalAllowedTags;
+	//Display the Admin or Profile links
+	$showAdmin = false;
+	$showUser = false;
 	
-	if($requiresLogin){
-		if(!isset($_SESSION['loggedIn'])){
+	if($pageName != "Login" && $pagename != "Create Account"){
+		if(!$_SESSION['loggedIn']){
 			if(strlen($returnUrl)==0)
 				header("Location: $prefix../login/");
 			else
 				header("Location: $prefix../login/?returnUrl=$returnUrl");
+		}else{
+			$showUser = true;
+			if(count(array_intersect($allowedTags,$_SESSION['tags'])) == 0)
+				header("Location: $prefix../support/error.php?err=permissions");
+			elseif(in_array("1",$_SESSION['tags']) || in_array("0",$_SESSION['tags'])){
+				$showAdmin = true;
+			}
 		}
 	}
 	

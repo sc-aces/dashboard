@@ -1,4 +1,5 @@
 <?php
+	$allowedTags = array("2");
 	$prefix = "../";
 	$pageName = "Council Voting";
 	$customHeaderIcon = "<i class=\"fa fa-check-square-o\"></i>";

@@ -1,4 +1,5 @@
 <?php
+	$allowedTags = array("3");
 	$prefix = "../";
 	$pageName = "My Ships";
 	$customHeaderIcon = "<i class=\"fa fa-space-shuttle\"></i>";

@@ -1,4 +1,5 @@
 <?php
+	$allowedTags = array("3");
 	$prefix = "";
 	$pageName = "Profile";
 	$customHeaderIcon = "<i class=\"fa fa-user\"></i>";

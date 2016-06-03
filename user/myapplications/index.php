@@ -1,4 +1,5 @@
 <?php
+	$allowedTags = array("3");
 	$prefix = "../";
 	$pageName = "My Applications";
 	$customHeaderIcon = "<i class=\"fa fa-file-text\"></i>";

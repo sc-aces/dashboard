@@ -319,17 +319,27 @@
 			</section>
 			<h2>Recent Elections</h2>
 			<div id="elections-data">
-				<form class="col-md-8">
+				<form class="col-md-8 form-inline">
 					<div class="form-group">
 						<input type="text" class="form-control" id="search-elections" placeholder="Search...">
 					</div>
+					<div class="form-group">
+						<select class="form-control" id="sort-elections">
+							<option value="id">ID</option>
+							<option value="name">Name</option>
+							<option value="status">Status</option>
+							<option value="start">Start</option>
+							<option value="end">End</option>
+						</select>
+					</div>
 				</form>
-				<ul id="ship-pagination" class="pagination">
+				<ul id="election-pagination" class="pagination pull-right">
 					
 				</ul>
+				<br>
 				<br class="clear">
 				<div id="elections-container">
-					<?php echo $electionHtml; ?>
+<?php echo $electionHtml; ?>
 				</div>
 			</div>
 <?php

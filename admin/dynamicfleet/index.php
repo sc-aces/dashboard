@@ -8,10 +8,10 @@
 	
 	if($debug){
 		echo "<pre>";
-		var_dump(mysqli_stat($conn));
+		// var_dump(mysqli_stat($conn));
 		var_dump($_POST);
-		var_dump($_FILES);
-		var_dump($_SERVER);
+		// var_dump($_FILES);
+		// var_dump($_SERVER);
 		echo "</pre>";
 	}
 	
@@ -325,9 +325,10 @@
 						<input type="text" class="form-control" id="search-ships" placeholder="Search...">
 					</div>
 				</form>
-				<ul id="ship-pagination" class="pagination">
+				<ul id="ship-pagination" class="pagination pull-right">
 					
 				</ul>
+				<br>
 				<br class="clear">
 				<div id="ship-container">
 					

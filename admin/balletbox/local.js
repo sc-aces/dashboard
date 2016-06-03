@@ -5,15 +5,19 @@
 	global resetOnClick
 	global months
 	global itemsPerPage
+	global round
 */
 
 var electionJson;
+var usernames = ["one","two"];
 
 $(document).ready(function(event){
 	fetchElections("");
 	$('#search-elections').keyup(function(event){
-		console.log($(this).val());
-		fetchElections("?q="+$(this).val());
+		fetchElections("?q="+$(this).val()+"&o="+$('#sort-elections').val());
+	});
+	$('#sort-elections').change(function(event){
+		fetchElections("?o="+$(this).val());
 	});
 	var currentDateUtc = new Date();
 	currentDateUtc.setTime(currentDateUtc.getTime()+currentDateUtc.getTimezoneOffset()*60*1000);
@@ -40,7 +44,7 @@ function fetchElections(query){
 			buildElections(0);
 		},
 		error: function(request, status, error){
-			console.error("fetchShip - Status: "+status+", Error: "+error);
+			console.error("fetchEelctions - Status: "+status+", Error: "+error);
 		}
 	});
 }
@@ -59,7 +63,7 @@ function buildElections(page){
 			activeClass= " class=\"active\"";
 		paginationHtml += "\t<li"+activeClass+"><a class=\"pagination-button\" id=\"pagination-"+i+"\">"+pageNum+"</a></li>\n";
 	}
-	$('#ship-pagination').html(paginationHtml);
+	$('#election-pagination').html(paginationHtml);
 	$('.pagination-button').click(function(event){
 		buildElections($(this).attr('id').substring(11));
 	});
@@ -72,10 +76,7 @@ function buildElections(page){
 	if(electionJson[0].status == "error"){
 		finalHtml = createAlert("warning","No elections found!");
 	}else{
-		console.log("loopstop: "+loopStop);
-		console.log(electionJson);
 		for(i=page*itemsPerPage; i<loopStop;i++){
-			console.log(electionJson[i]);
 			var error = false;
 			
 			if(electionJson[i].election_generic.length > 0){
@@ -86,25 +87,70 @@ function buildElections(page){
 				for(var j=0; j<election_genericArray.length; j++){
 					voteHtml += "\t\t\t<div id=\""+election_genericArray[j].id+"-"+election_genericArray[j].election_id+"\" class=\"election-result\">\n"
 							+"\t\t\t\t<h5 class=\"text-center\">"+election_genericArray[j].name+"</h5>\n";
-					election_genericArray[j].candidates = JSON.parse(electionJson[i].election_generic[j].candidates);
-					var candidatesArray = election_genericArray[j].candidates.candidates;
-					if(candidatesArray[0] != null){
-						var totalVotes = electionJson[i].election_generic[j].candidates.totalVotes;
+					var candidatesArray = JSON.parse(electionJson[i].election_generic[j].candidates).candidates;
+					var totalVotes = JSON.parse(electionJson[i].election_generic[j].candidates).totalVotes;
+
+					if(totalVotes != null){
+						$.ajax({
+							type: 'GET',
+							url: '../users/fetch-users.php',
+							success: function (jsonString) {
+								var tempUsernames = JSON.parse(jsonString);
+								for(var l=0; l<tempUsernames.length; l++)
+									usernames.push(tempUsernames[l].username);
+								console.log(usernames);
+							},
+							error: function(request, status, error){
+								console.error("fetchUsernames - Status: "+status+", Error: "+error);
+							}
+						});
+						
 						for(var k=0; k<candidatesArray.length; k++){
 							voteHtml += "\t\t\t\t<div class=\"candidate\">\n"
 										+"\t\t\t\t\t<h6 class=\"small pull-left\">"+candidatesArray[k].candidate+"</h6>\n"
-										+"\t\t\t\t\t<h6 class=\"small pull-right\">"+candidatesArray[k].votes+"</h6>\n"
+										+"\t\t\t\t\t<h6 class=\"small pull-right\">"+candidatesArray[k].votes+" ("+round(candidatesArray[k].votes/totalVotes*100)+"%)</h6>\n"
 										+"\t\t\t\t\t<div class=\"progress clear\">\n"
 										+"\t\t\t\t\t\t<div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\""+candidatesArray[k].votes/totalVotes*100+"\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:"+candidatesArray[k].votes/totalVotes*100+"%\">\n"
-										+"\t\t\t\t\t\t\t<span class=\"sr-only\">"+candidatesArray[k].votes/totalVotes*100+"% Votes</span>\n"
+										+"\t\t\t\t\t\t\t<span class=\"sr-only\">"+round(candidatesArray[k].votes/totalVotes*100)+"% Votes</span>\n"
 										+"\t\t\t\t\t\t</div>\n"
 										+"\t\t\t\t\t</div>\n"
 										+"\t\t\t\t</div>\n";
 						}
 					}
+					voteHtml += "\t\t\t\t<div class=\"edit-generic\">\n"
+								+"\t\t\t\t\t<button class=\"btn btn-warning bold lightbox-btn cboxElement\" type=\"button\" href=\"#election-generic-"+i+"-"+j+"_edit\">\n"
+								+"\t\t\t\t\t\t<i class=\"fa fa-pencil-square-o\"></i> Edit Generic\n"
+								+"\t\t\t\t\t</button>\n"
+								+"\t\t\t\t</div>\n"
+								+"\t\t\t\t<div class=\"displayNone\">\n"
+								+"\t\t\t\t\t<div id=\"election-generic-"+i+"-"+j+"_edit\">\n"
+								+"\t\t\t\t\t\t<div class=\"edit-election\">\n"
+								+"\t\t\t\t\t\t\t<h4 class=\"text-left\"><span class=\"warning-color\"><i class=\"fa fa-pencil-square-o fa-gl\"></i></span> Edit Election</h4>\n"
+								+"\t\t\t\t\t\t\t<hr>\n"
+								+"\t\t\t\t\t\t\t<form action=\"\" id=\"edit_election-generic-"+i+"-"+j+"-form\" class=\"form-horizontal\" method=\"post\">\n"
+								+"\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"formName\" value=\"edit_election-generic-"+i+"-"+j+"-form\">\n"
+								+"\t\t\t\t\t\t\t\t<div class=\"inline-form-column\">\n"
+								+"\t\t\t\t\t\t\t\t\t<div class=\"form-group\">\n"
+								+"\t\t\t\t\t\t\t\t\t\t<label for=\"election-name\" class=\"col-sm-2 control-label\">Candidate Name</label>\n"
+								+"\t\t\t\t\t\t\t\t\t\t<div class=\"col-sm-10\">\n"
+								+"\t\t\t\t\t\t\t\t\t\t\t<div class=\"input-group\">\n"
+								+"\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"input-group-addon\"><i class=\"fa fa-pencil\"></i></div>\n"
+								+"\t\t\t\t\t\t\t\t\t\t\t\t<input class=\"form-control add-candidate\" id=\"election-name\" placeholder=\"Candidate Name\" name=\"candidate-name\" required>\n"
+								+"\t\t\t\t\t\t\t\t\t\t\t</div>\n"
+								+"\t\t\t\t\t\t\t\t\t\t</div>\n"
+								+"\t\t\t\t\t\t\t\t\t</div>\n"
+								+"\t\t\t\t\t\t\t\t\t<div class=\"form-group\">\n"
+								+"\t\t\t\t\t\t\t\t\t\t<div class=\"col-sm-offset-2 col-sm-10\">\n"
+								+"\t\t\t\t\t\t\t\t\t\t\t<button form=\"edit_election-generic-"+i+"-"+j+"-form\" class=\"btn btn-warning\" type=\"submit\"><i class=\"fa fa-pencil-square-o fa-gl\"></i> Edit Election</button>\n"
+								+"\t\t\t\t\t\t\t\t\t\t</div>\n"
+								+"\t\t\t\t\t\t\t\t\t</div>\n"
+								+"\t\t\t\t\t\t\t\t</div>\n"
+								+"\t\t\t\t\t\t\t</form>\n"
+								+"\t\t\t\t\t\t</div>\n"
+								+"\t\t\t\t\t\t<p class=\"modify-disclaimer\">Note: Changes will only be made if you select the checkbox and click the button. Closing this page or clicking \"close\" will not submit the changes.</p>\n"
+								+"\t\t\t\t\t</div>\n"
+								+"\t\t\t\t</div>\n";
 					voteHtml +=	"\t\t\t</div>\n";
-					
-					electionJson[i].election_generic[j].voters = JSON.parse(electionJson[i].election_generic[j].voters);
 				}
 				voteHtml += "\t\t</div>\n";
 			}
@@ -466,4 +512,5 @@ function buildElections(page){
 	}
 	resetOnClick();
 	$('.lightbox-btn').colorbox({inline:true, maxWidth:"95%", maxHeight:"95%"});
+	$('.add-candidate').autocomplete('option','source',usernames);
 }

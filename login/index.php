@@ -1,4 +1,5 @@
 <?php
+	$requiresLogin = false;
 	$prefix = "";
 	$pageName = "Login";
 	$customHeaderIcon = "<i class=\"fa fa-lock\"></i>";
@@ -109,31 +110,11 @@
 								<!--</div>-->
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button form="login-form" type="submit" value="ture" class="btn btn-default"><i class="fa fa-sign-in"></i> Sign in</button>
+										<button form="login-form" type="submit" class="btn btn-default"><i class="fa fa-sign-in"></i> Sign in</button>
+										<a href="create-account/" class="btn btn-default"><i class="fa fa-user-plus"></i> Create Account</a>
 									</div>
 								</div>
 							</div>
 						</form>
 					</div>
-					<!--<div id="create-account">-->
-						
-					<!--</div>-->
-				</div>
-			</div>
-		</div>
-	</div>
-
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script src="<?php echo $supportPrefix;?>bootstrap/js/bootstrap.min.js"></script>
-		<script src="<?php echo $supportPrefix;?>lightbox/dist/js/lightbox.min.js"></script>
-		<script src="<?php echo $supportPrefix;?>colorbox/jquery.colorbox-min.js"></script>
-		<script src="<?php echo $supportPrefix;?>flipclock/compiled/flipclock.min.js"></script>
-		<script src="<?php echo $dashboardSupportPrefix;?>js/main.js"></script>
-		<?php if(file_exists("local.js")) echo "<script src=\"local.js\"></script>";?>
-		<?php if($customJs) echo $customJs; ?>
-		<?php $conn->close(); ?>
-  </body>
-</html>
+<?php include '../admin/footer.php'; ?>

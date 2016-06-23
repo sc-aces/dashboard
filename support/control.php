@@ -39,10 +39,10 @@
 	}
 	
 	//MySQL
-	$server="acesfleetmysql.c2qiwft8er61.us-west-2.rds.amazonaws.com";
-	$user= "fleetAdmin";
-	$pass= "~ACESSQLP4ssW0rd!";
-	$db = "fleet";
+	$server="";
+	$user= "";
+	$pass= "";
+	$db = "";
 	
 	// Create connection
 	$conn = new mysqli($server, $user, $pass, $db);
